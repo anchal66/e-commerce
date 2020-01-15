@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AuthService } from './auth.service';
-import { Router } from '@angular/router';
+import { Router, RouterStateSnapshot } from '@angular/router';
 import { map } from 'rxjs/operators';
 
 @Injectable({
@@ -10,7 +10,7 @@ export class AuthGuard implements AuthGuard {
 
   constructor(private auth: AuthService, private router: Router) { }
 
-  canActivate() {
+  canActivate(route, state: RouterStateSnapshot) {
     // this.auth.user$.subscribe(user => {
     //   if (user) { return true; }
 
@@ -20,8 +20,9 @@ export class AuthGuard implements AuthGuard {
     return this.auth.user$.pipe(map(user => {
       if (user) { return true; }
 
-      this.router.navigate(['/login']);
+      this.router.navigate(['/login'], { queryParams: { returnUrl: state.url } });
       return false;
-    }));
+    })
+    );
   }
 }
