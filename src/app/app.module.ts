@@ -20,6 +20,7 @@ import { AdminOrdersComponent } from './admin/admin-orders/admin-orders.componen
 import { LoginComponent } from './login/login.component';
 import { AuthService } from './services/auth.service';
 import { AuthGuard } from './services/auth-guard.service';
+import { ProductFormComponent } from './admin/product-form/product-form.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { AuthGuard } from './services/auth-guard.service';
     MyOrdersComponent,
     AdminProductsComponent,
     AdminOrdersComponent,
-    LoginComponent
+    LoginComponent,
+    ProductFormComponent
   ],
   imports: [
     BrowserModule,
